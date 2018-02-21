@@ -1,0 +1,13 @@
+%h3.ui.header>Files
+
+%table.ui.celled.table
+  %thead
+    %tr
+      %th>Name
+      %th>Download
+  %tbody
+    -@documents.each do |document|
+      %tr
+        %td=document.display_name
+        %td
+          =link_to 'Download', 'download_file(document)'

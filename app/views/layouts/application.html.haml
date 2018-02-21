@@ -1,0 +1,12 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %title DataCleanup
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all'
+  %body
+    = render 'layouts/shared/navbar'
+    .ui.container
+      = yield
+    = javascript_include_tag 'application'

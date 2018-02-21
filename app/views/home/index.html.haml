@@ -1,0 +1,11 @@
+%h3.ui.header>Home
+
+.ui.grid
+  .four.wide.column
+    .ui.card
+      .image
+        =image_tag('csv.png')
+      .content
+        = link_to "Go CSV Lookup", csv_engine_lookup_path, class: "header"
+        .description
+          With CSV Lookup reemplace foreign keys with correct data

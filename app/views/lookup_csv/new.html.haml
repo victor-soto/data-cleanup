@@ -1,0 +1,20 @@
+%h3.ui.header>Lookup CSV
+
+.ui.form
+  .field
+    .two.fields
+      .field
+        .ui.action.input
+          =text_field_tag 'file_1', nil, class: 'textFile', placeholder: 'Target file', readonly: true
+          =file_field_tag 'file', class: 'upload-temp', data: {target: '#target-csv'}
+          =hidden_field_tag 'csv_1', nil, id: 'target-csv'
+          .ui.icon.button
+            %i.attach.icon
+      .field
+        .ui.action.input
+          =text_field_tag 'file_2', nil, class: 'textFile', placeholder: 'Source file', readonly: true
+          =file_field_tag 'file', class: 'upload-temp', data: {target: '#source-csv'}
+          =hidden_field_tag 'csv_2', nil, id: 'source-csv'
+          .ui.icon.button
+            %i.attach.icon
+  =button_tag 'Start lookup', class: 'ui button', id: 'preview-lookup', data: {load: preview_csv_path, target: '#target-csv', source: '#source-csv'}

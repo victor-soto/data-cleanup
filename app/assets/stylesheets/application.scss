@@ -1,0 +1,12 @@
+@import "semantic-ui";
+
+.table-xs {
+  font-size: 10px;
+  th {
+    padding: 5px !important;
+  }
+}
+
+.ui.action.input input[type="file"] {
+  display: none;
+}

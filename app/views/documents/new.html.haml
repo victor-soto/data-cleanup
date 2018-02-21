@@ -1,0 +1,15 @@
+%h3.ui.header>File upload
+
+= form_for @document, url: {action: "create"}, html: {class: 'ui form'} do |f|
+  .field
+    .ui.action.input
+      =text_field_tag 'file_name', nil, class: 'textFile', placeholder: 'File...', readonly: true
+      =file_field_tag 'file', id: 'upload'
+      .ui.icon.button
+        %i.attach.icon
+      =f.hidden_field :display_name
+      =f.hidden_field :name
+      =f.hidden_field :folder
+      =f.hidden_field :file_type
+  =submit_tag 'Save', class: 'ui primary button'
+  =link_to 'All files', documents_path, class: 'ui button'

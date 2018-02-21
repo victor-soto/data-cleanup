@@ -1,0 +1,3 @@
+# lookup
+class LookupCsv
+end
