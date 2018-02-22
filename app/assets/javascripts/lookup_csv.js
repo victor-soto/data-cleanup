@@ -7,25 +7,28 @@
     dataType: 'json',
     done: function (e, data) {
       var file = data.result.document;
+      var $input = $(this);
       var selector = $(this).data('target');
       $(selector).val(file.id);
-      console.log($(selector));
+      var url = $(this).data('load');
+      var payload = { id: file.id };
+      $.ajax({
+        url: url,
+        data: payload,
+        success: function(data) {
+          valueRegex = new RegExp('{{value}}');
+          target = $input.data('target');
+          html = '';
+          $(target).find('option').remove().end();
+          $.each(data.csv_headers, function(idx, val) {
+            var template = '<option value="{{value}}">{{value}}</option>';
+            template = template.replace(valueRegex, val);
+            html += template.replace(valueRegex, val);
+          });
+          $(target).append(html);
+        }
+      });
     }
-  });
-
-  var $preview = $('#preview-lookup');
-  $preview.on('click', function() {
-    var target = $(this).data('target');
-    var source = $(this).data('source');
-    var url = $(this).data('load');
-    var payload = {csv_1: $(target).val(), csv_2: $(source).val()};
-    $.ajax({
-      url: url,
-      data: payload,
-      done: function(data) {
-        console.log(data);
-      }
-    });
   });
 
 })(jQuery);

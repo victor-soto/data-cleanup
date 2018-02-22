@@ -6,15 +6,22 @@
       .field
         .ui.action.input
           =text_field_tag 'file_1', nil, class: 'textFile', placeholder: 'Target file', readonly: true
-          =file_field_tag 'file', class: 'upload-temp', data: {target: '#target-csv'}
+          =file_field_tag 'file', class: 'upload-temp', data: {target: '#target-csv', load: preview_csv_path, target: '#header_1'}
           =hidden_field_tag 'csv_1', nil, id: 'target-csv'
           .ui.icon.button
             %i.attach.icon
       .field
         .ui.action.input
           =text_field_tag 'file_2', nil, class: 'textFile', placeholder: 'Source file', readonly: true
-          =file_field_tag 'file', class: 'upload-temp', data: {target: '#source-csv'}
+          =file_field_tag 'file', class: 'upload-temp', data: {target: '#source-csv', load: preview_csv_path, target: '#header_2'}
           =hidden_field_tag 'csv_2', nil, id: 'source-csv'
           .ui.icon.button
             %i.attach.icon
+  .field#table-data
+    .two.fields.row
+      .field
+        =select_tag :header_1, nil, class: 'ui fluid search dropdown', id: 'header_1'
+      .field
+        =select_tag :header_2, nil, class: 'ui fluid search dropdown', id: 'header_2'
+
   =button_tag 'Start lookup', class: 'ui button', id: 'preview-lookup', data: {load: preview_csv_path, target: '#target-csv', source: '#source-csv'}

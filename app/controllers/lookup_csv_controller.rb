@@ -11,24 +11,10 @@ class LookupCsvController < ApplicationController
   end
 
   def preview
-    file_target = Document.find(params[:csv_1])
-    file_source = Document.find(params[:csv_2])
-    csv_target = Rails.root.join(file_target.folder, file_target.name)
-    csv_source = Rails.root.join(file_source.folder, file_source.name)
-    target_file = File.open(csv_target, encoding: 'iso-8859-1')
-    source_file = File.open(csv_source, encoding: 'iso-8859-1')
-
-
-    lines = CSV.open(target_file, encoding: 'iso-8859-1').readlines
-    keys = lines.delete lines.first
-
-    data = lines.map do |values|
-      is_int(values) ? values.to_i : values.to_s
-      Hash[keys.zip(values)]
-    end
-    
-
-    render json: { csv_target: JSON.pretty_generate(data) }
+    file = Document.find(params[:id])
+    csv_header = Rails.root.join(file.folder, file.name)
+    headers = CSV.read(csv_header, headers: true, encoding: 'iso-8859-1').headers
+    render json: { csv_headers: headers }
   end
 
   private

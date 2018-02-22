@@ -1,16 +1,18 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: db
-  username: postgres
-  password:
-  pool: 5
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
   database: datacleanup_development
 
-
 test:
   <<: *default
   database: datacleanup_test
+
+production:
+  <<: *default
+  database: datacleanup_production
+  username: datacleanup
+  password: <%= ENV['DATA_CLEANUP_DATABASE_PASSWORD'] %>
