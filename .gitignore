@@ -15,4 +15,16 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Document folders
 public/uploads/*
+public/uploads/temp/*
+public/downloads/*
+public/test_files/*
+!public/uploads/.keep
+!public/uploads/temp/.keep
+!public/downloads/.keep
+!public/test_files/.keep
+
+# rspec settings
+.rspec

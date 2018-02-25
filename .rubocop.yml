@@ -9,6 +9,7 @@ AllCops:
     - 'config/**/*'
     - 'vendor/**/*'
     - '**/Guardfile'
+    - 'app/scripts/**/*'
 Rails:
   Enabled: true
 Metrics/LineLength:

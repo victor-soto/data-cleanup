@@ -1,27 +1,34 @@
 %h3.ui.header>Lookup CSV
 
-.ui.form
+=form_tag lookup_csv_index_path, class: 'ui form' do
   .field
     .two.fields
       .field
         .ui.action.input
           =text_field_tag 'file_1', nil, class: 'textFile', placeholder: 'Target file', readonly: true
-          =file_field_tag 'file', class: 'upload-temp', data: {target: '#target-csv', load: preview_csv_path, target: '#header_1'}
+          =file_field_tag 'file', class: 'upload-temp', data: {load: preview_csv_path, target: '#target_header', target_id: '#lookup_target_id'}
           =hidden_field_tag 'csv_1', nil, id: 'target-csv'
           .ui.icon.button
             %i.attach.icon
       .field
         .ui.action.input
           =text_field_tag 'file_2', nil, class: 'textFile', placeholder: 'Source file', readonly: true
-          =file_field_tag 'file', class: 'upload-temp', data: {target: '#source-csv', load: preview_csv_path, target: '#header_2'}
+          =file_field_tag 'file', class: 'upload-temp', data: {load: preview_csv_path, target: '.source_header_comparer', target_id: '#lookup_source_id'}
           =hidden_field_tag 'csv_2', nil, id: 'source-csv'
           .ui.icon.button
             %i.attach.icon
   .field#table-data
-    .two.fields.row
+    .three.fields.row
       .field
-        =select_tag :header_1, nil, class: 'ui fluid search dropdown', id: 'header_1'
+        =label_tag '[lookup][target_header]', 'Find field'
+        =hidden_field_tag '[lookup][target_id]', nil, id: 'lookup_target_id'
+        =select_tag '[lookup][target_header]', nil, class: 'ui fluid search dropdown', id: 'target_header'
       .field
-        =select_tag :header_2, nil, class: 'ui fluid search dropdown', id: 'header_2'
+        =label_tag '[lookup][source_header_comparer]', 'Compare field'
+        =hidden_field_tag '[lookup][source_id]', nil, id: 'lookup_source_id'
+        =select_tag '[lookup][source_header_comparer]', nil, class: 'ui fluid search dropdown source_header_comparer'
+      .field
+        =label_tag '[lookup][source_header_value]', 'Compare value'
+        =select_tag '[lookup][source_header_value]', nil, class: 'ui fluid search dropdown source_header_comparer'
 
-  =button_tag 'Start lookup', class: 'ui button', id: 'preview-lookup', data: {load: preview_csv_path, target: '#target-csv', source: '#source-csv'}
+  =submit_tag 'Start lookup', class: 'ui download primary button'

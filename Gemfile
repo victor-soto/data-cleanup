@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.3.3'
 
 gem 'aws-ses', '~> 0.6.0'
 gem 'coffee-rails', '~> 4.2'
@@ -17,6 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'factory_bot_rails', '~> 4.8', '>= 4.8.2'
   gem 'ffaker'
   gem 'rspec-rails'
   gem 'rubocop', require: false

@@ -8,8 +8,10 @@
     done: function (e, data) {
       var file = data.result.document;
       var $input = $(this);
-      var selector = $(this).data('target');
-      $(selector).val(file.id);
+      var selectorId = $input.data('target-id');
+      console.log($input);
+      console.log(selectorId);
+      $(selectorId).val(file.id);
       var url = $(this).data('load');
       var payload = { id: file.id };
       $.ajax({

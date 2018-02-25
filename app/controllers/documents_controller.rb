@@ -24,21 +24,25 @@ class DocumentsController < ApplicationController
   def upload_temp
     document = save_file(params[:file])
     if document.save
-      render json: {document: document}
+      render json: { document: document }
     else
-      render json: {errors: document.errors}
+      render json: { errors: document.errors }
     end
   end
 
   private
 
   def save_file(file)
-    file_ext = File.extname(file.path)
-    file_name = SecureRandom.urlsafe_base64 + file_ext
+    file_name = SecureRandom.urlsafe_base64 + File.extname(file.path)
     File.open(Rails.root.join('public', 'uploads', 'temp', file_name), 'wb') do |f|
       f.write(file.read)
     end
-    Document.new(display_name: file.original_filename, name: file_name, file_type: file_ext, folder: 'public/uploads/temp/')
+    Document.new(
+      display_name: file.original_filename,
+      name: file_name,
+      file_type: file_ext,
+      folder: 'public/uploads/temp/'
+    )
   end
 
   def document_params
